@@ -87,4 +87,5 @@ class RoleSerializer(serializers.ModelSerializer):
             roles=roles,
             user=user,
         )
+        assignee.save()
         return assignee
