@@ -22,3 +22,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/wframe/accounts/__pycache__
+/wframe/accounts/migrations/__pycache__
+/wframe/core/__pycache__
+/wframe/core/migrations/__pycache__
+/wframe/tasks/__pycache__
+/wframe/tasks/migrations/__pycache__
+/wframe/users/__pycache__
+/wframe/users/migrations/__pycache__
+/wframe/wframe/__pycache__
+/wframe/db.sqlite3
+/env
