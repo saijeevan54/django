@@ -81,7 +81,7 @@ class RoleSerializer(serializers.ModelSerializer):
         roles = validated_data.pop('roles')
         user = User.objects.create(**user_data)
         user.set_password(user_data['password'])
-        user.is_superuser = True
+        user.is_superuser = false,
         user.save()
         assignee = Role(
             roles=roles,
