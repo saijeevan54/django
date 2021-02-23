@@ -56,17 +56,19 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+
 class AuthUserSerializer(serializers.ModelSerializer):
     auth_token = serializers.SerializerMethodField()
 
     class Meta:
-         model = User
-         fields = ('id', 'username',  'is_active', 'is_staff')
-         read_only_fields = ('id', 'is_active', 'is_staff')
-    
+        model = User
+        fields = ('id', 'username',  'is_active', 'is_staff')
+        read_only_fields = ('id', 'is_active', 'is_staff')
+
     def get_auth_token(self, obj):
         token = Token.objects.create(user=obj)
         return token.key
+
 
 class RoleSerializer(serializers.ModelSerializer):
     roles = serializers.CharField(max_length=20)
@@ -81,7 +83,7 @@ class RoleSerializer(serializers.ModelSerializer):
         roles = validated_data.pop('roles')
         user = User.objects.create(**user_data)
         user.set_password(user_data['password'])
-        user.is_superuser = True
+        user.is_superuser = false,
         user.save()
         assignee = Role(
             roles=roles,
@@ -89,3 +91,12 @@ class RoleSerializer(serializers.ModelSerializer):
         )
         assignee.save()
         return assignee
+
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Snippet` instance, given the validated data.
+        """
+        instance.user = validated_data.get('user', instance.user)
+        instance.role = validated_data.get('role', instance.role)
+        instance.save()
+        return instance

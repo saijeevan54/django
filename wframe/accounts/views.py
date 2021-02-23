@@ -1,3 +1,10 @@
+from django.contrib.auth import get_user_model
+from .utils import get_and_authenticate_user
+from . import serializers
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
+from rest_framework import viewsets, status
+from django.core.exceptions import ImproperlyConfigured
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,6 +13,17 @@ from rest_framework.decorators import api_view
 from accounts.serializers import RoleSerializer, TaskSerializer, ProjectSerializer
 from django.contrib.auth.models import User
 from core.models import Project, Tasks
+from tasks.models import Role
+from django.core import serializers
+
+
+class RoleView(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format='json'):
+        role = Role.objects.all()
+        serialized_queryset = serializers.serialize('json', role)
+        return serialized_queryset
 
 
 class UserCreate(APIView):
@@ -53,16 +71,5 @@ class ProjectCreate(APIView):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ImproperlyConfigured
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-
-from . import serializers
-from .utils import get_and_authenticate_user
 
 User = get_user_model()
-
-

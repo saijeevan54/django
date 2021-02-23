@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'tasks.apps.TasksConfig',
     'core.apps.CoreConfig',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'cal.apps.CalConfig',
 ]
 
 MIDDLEWARE = [
