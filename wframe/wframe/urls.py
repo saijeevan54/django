@@ -11,5 +11,6 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
     path('core/', include('core.urls')),
     path('accounts/', include('accounts.urls')),
-    path('cal/', include('cal.urls'))
+    path('cal/', include('cal.urls')),
+    path('details/', include('details.urls'))
 ]

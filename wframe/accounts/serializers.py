@@ -20,6 +20,21 @@ class TaskSerializer(serializers.ModelSerializer):
         return task
 
 
+class Task2Serializer(serializers.ModelSerializer):
+    text = serializers.CharField(max_length=40)
+    finish_date = serializers.DateField()
+
+    class Meta:
+        model = Tasks
+        fields = ('text', 'assignee', 'project', 'complete', 'finish_date')
+
+    def create(self, validated_data):
+        user = User.objects.get(username=validated_data.pop('assignee'))
+        task = Tasks(**validated_data, assignee=user)
+        task.save()
+        return task
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     name = serializers.CharField(min_length=3)
 
