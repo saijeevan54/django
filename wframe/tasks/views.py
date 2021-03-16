@@ -3,7 +3,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render, redirect
-from core.models import Project, Tasks, Tasks2
+from core.models import Tasks2
+from details.models import Project, Tasks
 from django.views.decorators.http import require_POST
 from rest_framework import status
 from rest_framework.response import Response
@@ -14,8 +15,9 @@ from rest_framework.generics import (
     ListAPIView
 )
 from rest_framework import permissions
-from accounts.serializers import Task2Serializer, TaskSerializer, ProjectSerializer, RoleSerializer
+from accounts.serializers import Task2Serializer, ProjectSerializer, RoleSerializer
 from .models import Role
+from details.serializers import TaskSerializer
 
 
 class TasksListView(ListAPIView):
