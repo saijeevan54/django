@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'cal.apps.CalConfig',
-    'details.apps.DetailsConfig'
+    'details.apps.DetailsConfig',
 ]
 
 MIDDLEWARE = [

@@ -51,6 +51,12 @@ class TaskCreate(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ProjectListView(ListAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+    permission_classes = (permissions.AllowAny, )
+
+
 class TasksListView(ListAPIView):
     queryset = Tasks.objects.all()
     serializer_class = TaskSerializer

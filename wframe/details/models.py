@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Project(models.Model):
     name = models.CharField(max_length=200, unique=True)
     assignees = models.ManyToManyField(
-        User, related_name='project_assignees')
+        User,  related_name='project_assignees')
     creator = models.ForeignKey(
         User, to_field='username', related_name='project_creator', on_delete=models.CASCADE)
 
