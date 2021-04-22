@@ -2,7 +2,8 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 from tasks.models import Role
-from core.models import Tasks, Project
+from core.models import Tasks
+from details.models import Project
 from rest_framework.authtoken.models import Token
 
 
@@ -40,7 +41,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', )
+        fields = ('name', 'creator')
 
     def create(self, validated_data):
 
